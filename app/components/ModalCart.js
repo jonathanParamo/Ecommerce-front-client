@@ -92,7 +92,6 @@ const ModalCart = () => {
                           alt={name}
                           width={100}
                           height={150}
-                          layout="responsive"
                           className="w-8 h-12 md:w-20 md:h-20 rounded"
                         />
                         <div>

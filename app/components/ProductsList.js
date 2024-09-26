@@ -14,7 +14,6 @@ export default function ListProducts({ products, handleAddToCart }) {
             alt={product.title}
             width={100}
             height={150}
-            layout="responsive"
             className="w-full h-44 object-cover p-2"
           />
           <div className="w-full">
