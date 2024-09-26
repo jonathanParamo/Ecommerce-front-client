@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaCartPlus } from "react-icons/fa";
 
 export default function ListProducts({ products, handleAddToCart }) {
@@ -8,9 +9,12 @@ export default function ListProducts({ products, handleAddToCart }) {
           key={product._id}
           className="w-full p-2 bg-white dark:bg-[#141414] rounded-lg shadow-md overflow-hidden flex flex-col items-center"
         >
-          <img
+          <Image
             src={product.images[0]}
             alt={product.title}
+            width={100}
+            height={150}
+            layout="responsive"
             className="w-full h-44 object-cover p-2"
           />
           <div className="w-full">

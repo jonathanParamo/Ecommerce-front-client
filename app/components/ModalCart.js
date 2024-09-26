@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { removeFromCart, increaseQuantity, decreaseQuantity } from "../features/cart/cartProvider";
 import { CiCirclePlus, CiCircleRemove, CiCircleMinus } from "react-icons/ci";
+import Image from "next/image";
 
 const ModalCart = () => {
   const dispatch = useDispatch();
@@ -86,10 +87,12 @@ const ModalCart = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {cart.map(({ _id, name, images, priceCOP, quantity, discountedPrice }) => (
                       <div key={_id} className="flex items-center space-x-4 mb-4">
-                        <img
+                        <Image
                           src={images[0]}
                           alt={name}
                           width={100}
+                          height={150}
+                          layout="responsive"
                           className="w-8 h-12 md:w-20 md:h-20 rounded"
                         />
                         <div>
