@@ -140,8 +140,8 @@ const ModalCart = () => {
             <div className="w-full flex justify-around">
               <button
                 onClick={handleCheckout}
-                className={`mt-4 px-4 py-2 bg-blue-500 text-white rounded ${!user ? 'opacity-50 cursor-not-allowed' : ''}`} 
-                disabled={!user}
+                className={`mt-4 px-4 py-2 bg-blue-500 text-white rounded ${!user || !hasData ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={!user || !hasData}
               >
                 Comprar
               </button>

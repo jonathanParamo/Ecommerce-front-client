@@ -9,7 +9,6 @@ import { ThemeProvider } from '@/app/components/ThemeProvider';
 const Success = () => {
   const [sessionData, setSessionData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const session_id = searchParams.get('session_id');
@@ -18,12 +17,15 @@ const Success = () => {
   const cedula = searchParams.get('cedula');
   const products = searchParams.get('products');
   const [orderCreated, setOrderCreated] = useState(false);
+  const [error, setError] = useState('');
+
+  const API_URL = process.env.NEXT_PUBLIC_URL_SERVER || 'http://localhost:4000/api/v1/';
 
   useEffect(() => {
     if (session_id && !orderCreated) {
       const createOrder = async () => {
         try {
-          const res = await fetch('http://localhost:4000/api/v1/orders/create-order', {
+          const res = await fetch(`${API_URL}orders/create-order`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -42,8 +44,7 @@ const Success = () => {
           if (res.ok) {
             setSessionData('Orden creada con éxito', data);
             setLoading(false)
-          setOrderCreated(true);
-
+            setOrderCreated(true);
           } else {
             setError('Error al crear la orden:', data.message);
             setLoading(false)
@@ -56,7 +57,7 @@ const Success = () => {
 
       createOrder();
     }
-  }, [session_id, user_id, cedula, products, orderCreated]);
+  }, [session_id, user_id, cedula, products, orderCreated, API_URL]);
 
   const handleGoHome = () => {
     router.push('/');

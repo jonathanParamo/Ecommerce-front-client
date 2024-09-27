@@ -39,16 +39,14 @@ const ProductsPage = () => {
   return (
     <div className="bg-white dark:bg-black text-white dark:text-gray-200 min-h-screen">
       {categoryId && subcategory && <Navbar />}
-      <main className="pt-5 pb-3 md:py-10 px-5">
+      <main className="pt-5 pb-3 md:py-10 md:px-5">
         {status === 'loading' && <Loader />}
         {status === 'failed' && <p className="text-white">Error: {error}</p>}
         {status === 'succeeded' && (
           <>
-            <div className="w-full flex justify-center p-2">
-              {/* Aquí usamos el componente ProductList */}
+            <div className="w-full flex justify-center md:p-2">
               <ProductList products={products} handleAddToCart={handleAddToCart} />
 
-              {/* Mostrar mensaje si no hay productos */}
               {!hasData && (
                 <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-[#141414] p-4">
                   <div className="text-gray-600 dark:text-gray-400">

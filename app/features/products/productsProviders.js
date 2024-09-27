@@ -7,7 +7,6 @@ export const fetchProducts = createAsyncThunk(
   async (params) => {
     const { page = 1, limit = 20, category, subcategory } = params;
 
-    // Construye la URL con los parámetros de consulta
     const url = new URL(`${API_URL}products/`);
     url.searchParams.append('page', page);
     url.searchParams.append('limit', limit);
@@ -19,7 +18,13 @@ export const fetchProducts = createAsyncThunk(
       url.searchParams.append('subcategory', subcategory);
     }
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -34,7 +39,6 @@ export const searchProducts = createAsyncThunk(
   async (params) => {
     const { page = 1, limit = 20, category, subcategory, query } = params;
 
-    // Construye la URL con los parámetros de consulta
     const url = new URL(`${API_URL}products/search`);
     url.searchParams.append('query', query);
     url.searchParams.append('page', page);
